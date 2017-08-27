@@ -22,12 +22,12 @@ def send_email(user, pwd, recipient, subject, body):
         server.sendmail(FROM, TO, message)
         server.close()
         print("successfully sent the mail")
-    except:
-        print("failed to send mail")
+    except Exception as inst:
+        print(inst)
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval', minutes=3)
+@sched.scheduled_job('interval', minutes=1)
 def timed_job():
 	send_email('rishabhranawat12345', 'zinnialondon!!', 
 	'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
