@@ -41,8 +41,4 @@ def scheduled_job():
 def scheduled_email():
 	send_email('rishabhranawat12345', 'zinnialondon!!', 
 		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
-
-
-# sched.start()
-send_email('rishabhranawat12345', 'zinnialondon!!', 
-		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
+sched.start()
