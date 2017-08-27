@@ -37,7 +37,7 @@ def timed_job():
 def scheduled_job():
     print('This job is run every weekday at 5pm.')
 
-@sched.scheduled_job('cron', day_of_week='sun', hour=17, minutes=45)
+@sched.scheduled_job('cron', day_of_week='sun', hour=17, minute=48)
 def scheduled_email():
 	send_email('rishabhranawat12345', 'zinnialondon!!', 
 		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
