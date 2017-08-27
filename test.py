@@ -21,26 +21,28 @@ def send_email(user, pwd, recipient, subject, body):
         server.login(gmail_user, gmail_pwd)
         server.sendmail(FROM, TO, message)
         server.close()
-        print 'successfully sent the mail'
+        print("successfully sent the mail")
     except:
-        print "failed to send mail"
+        print("failed to send mail")
 
 sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=3)
 def timed_job():
 	send_email('rishabhranawat12345', 'zinnialondon!!', 
-		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
-    print('This job is run every three minutes.')
+	'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
+	print('This job is run every three minutes.')
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
 def scheduled_job():
     print('This job is run every weekday at 5pm.')
 
-@sched.scheduled_job('email', day_of_week='sun', hour=17, minutes=45)
+@sched.scheduled_job('cron', day_of_week='sun', hour=17, minutes=45)
 def scheduled_email():
 	send_email('rishabhranawat12345', 'zinnialondon!!', 
 		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
 
 
-sched.start()
+# sched.start()
+send_email('rishabhranawat12345', 'zinnialondon!!', 
+		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
