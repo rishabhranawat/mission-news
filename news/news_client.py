@@ -2,11 +2,15 @@ import requests
 import os
 import json
 
+import sys
+
 class NewsClient:
 
 	def __init__(self, api_key=None):
 		self.BASE_URL="https://newsapi.org/v1/"
 		self.API_KEY=api_key
+		reload(sys)
+		sys.setdefaultencoding('utf-8')
 
 	def get_headlines(self,source=None, sort_by="top"):
 		url = self.BASE_URL+"articles?"+"source="+source+"&sortBy="+sort_by+"&apiKey="+self.API_KEY
@@ -26,5 +30,5 @@ class NewsClient:
 		articles = self.get_headlines(source, sort_by)
 		titles = []
 		for each_article in articles:
-			titles.append(each_article["title"])
+			titles.append(each_article["title"].decode("utf-8"))
 		return titles
