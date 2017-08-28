@@ -1,1 +1,1 @@
-clock: python test.py
+clock: python server.py

@@ -29,17 +29,15 @@ sched = BlockingScheduler()
 
 @sched.scheduled_job('interval', minutes=1)
 def timed_job():
-	# send_email(os.environ["gmailUser"], os.environ["gmailPassword"],
-	# 		'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
-	print('This job is run every three minutes.')
+    from news.create_message import CreateMessage
+    cm = CreateMessage()
+    body = cm.get_message()
+    send_email(os.environ["gmailUser"], os.environ["gmailPassword"],
+        'rishabhranawat12345@gmail.com', 'testing cron job', body)
+    print('This job is run every three minutes.')
 
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour=17)
 def scheduled_job():
     print('This job is run every weekday at 5pm.')
-
-# @sched.scheduled_job('cron', day_of_week='sun', hour=17, minute=48)
-# def scheduled_email():
-# 	send_email(os.environ["gmailUser"], os.environ["gmailPassword"],
-# 			'rishabhranawat12345@gmail.com', 'testing cron job', 'hey rish')
 
 sched.start()
